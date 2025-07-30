@@ -1,0 +1,75 @@
+
+<html>
+<head>
+<title>🌿 โหระพา</title>
+<style>
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f9fbf7;
+  padding: 40px;
+  color: #2f3e46;
+}
+h2 {
+  color: #1b4332;
+}
+ol {
+  margin-top: 10px;
+}
+a {
+  color: #2d6a4f;
+  text-decoration: none;
+}
+.back-link {
+  margin-top: 40px;
+  display: block;
+}
+</style>
+</head>
+<body>
+<h2>🌿 โหระพา (Sweet Basil)</h2>
+<p><strong>ชื่อวิทยาศาสตร์:</strong> Ocimum basilicum</p>
+<p><strong>ประเภท:</strong> พืชสมุนไพร</p>
+<p><strong>แสงแดด:</strong> แดดจัดถึงแดดรำไร</p>
+<p><strong>ความชื้นที่เหมาะสม:</strong> 40-60%</p>
+<p><strong>ระยะเวลาปลูก:</strong> 30-35 วัน</p>
+<h3>📌 วิธีปลูกโหระพา</h3>
+<ol>
+<li>เตรียมดินร่วนผสมปุ๋ยอินทรีย์ให้ดีก่อนเพาะ</li>
+<li>เพาะเมล็ดในถาดเพาะหรือกระถางขนาดเล็ก</li>
+<li>รดน้ำวันละ 1-2 ครั้งให้ดินชื้น แต่อย่าแฉะ</li>
+<li>ย้ายปลูกเมื่อกล้ามีใบจริง 4-5 ใบ</li>
+<li>สามารถเก็บยอดได้ทุก 7-10 วัน</li>
+</ol>
+<a class="back-link" href="plants.html">⬅ กลับไปหน้ารายชื่อพืช</a>
+<script>
+  const BOT_TOKEN = '8167818083:AAHDRlEpnS-_yTAi1tDE7qW1JjyeaIYJ72M';
+  const CHAT_ID = '7307720165';
+
+  function sendTelegramAlert(message) {
+    const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+    const data = {
+      chat_id: CHAT_ID,
+      text: message
+    };
+
+    fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+    .then(res => {
+      if (res.ok) {
+        alert('ส่งแจ้งเตือนไปที่ Telegram แล้ว');
+      } else {
+        alert('ส่งไม่สำเร็จ: ' + res.description);
+      }
+    })
+    .catch(err => alert('เกิดข้อผิดพลาด: ' + err));
+  }
+</script>
+<button onclick="sendTelegramAlert('ถึงเวลารดน้ำต้นไม้แล้ว! 🌱')" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000; padding: 10px; background-color: #28a745; color: white; border: none; border-radius: 5px;">
+  แจ้งเตือน Telegram
+</button>
+<button onclick="location.href='chili.html'">ไปหน้าถัดไป</button></body>
+</html>

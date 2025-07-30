@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Moisture Monitor</title>
+  <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+  <h1>📡 ค่าความชื้นจาก Arduino Uno</h1>
+  <h2 id="moisture">กำลังรอข้อมูล...</h2>
+
+  <script>
+    const socket = io();
+    socket.on('moisture', function(data) {
+      document.getElementById('moisture').textContent = data;
+    });
+  </script>
+<a href="index.html" style="background-color:#bbf;padding:6px 12px;display:block;width:fit-content;margin-top:8px;">📡 อ่านค่าความชื้นจาก Arduino Uno</a>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html lang="th">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ตั้งค่าระบบ | Smart Garden</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+</head>
+<body class="min-h-screen bg-green-50 text-gray-800 font-sans p-4">
+<div class="max-w-3xl mx-auto">
+<div class="flex justify-between items-center mb-6">
+<h1 class="text-2xl font-bold text-green-700">⚙️ ตั้งค่าระบบ</h1>
+<a class="text-sm text-green-600 hover:underline" href="/dashboard.html">← กลับแดชบอร์ด</a>
+</div>
+<div class="bg-white p-6 rounded-lg shadow space-y-6">
+<div>
+<label class="block font-medium">หน่วยวัดอุณหภูมิ</label>
+<select class="w-full mt-2 border rounded p-2">
+<option>เซลเซียส (°C)</option>
+<option>ฟาเรนไฮต์ (°F)</option>
+</select>
+</div>
+<div class="flex items-center">
+<input class="mr-2" id="notif" type="checkbox"/>
+<label class="text-sm" for="notif">เปิดการแจ้งเตือนเมื่อความชื้นต่ำกว่ากำหนด</label>
+</div>
+<div class="flex items-center">
+<input class="mr-2" id="auto" type="checkbox"/>
+<label class="text-sm" for="auto">เปิดระบบรดน้ำอัตโนมัติ</label>
+</div>
+<button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">💾 บันทึกการตั้งค่า</button>
+</div>
+</div>
+<script>
+  const BOT_TOKEN = '8167818083:AAHDRlEpnS-_yTAi1tDE7qW1JjyeaIYJ72M';
+  const CHAT_ID = '7307720165';
+
+  function sendTelegramAlert(message) {
+    const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+    const data = {
+      chat_id: CHAT_ID,
+      text: message
+    };
+
+    fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+    .then(res => {
+      if (res.ok) {
+        alert('ส่งแจ้งเตือนไปที่ Telegram แล้ว');
+      } else {
+        alert('ส่งไม่สำเร็จ: ' + res.description);
+      }
+    })
+    .catch(err => alert('เกิดข้อผิดพลาด: ' + err));
+  }
+</script>
+<button onclick="sendTelegramAlert('ถึงเวลารดน้ำต้นไม้แล้ว! 🌱')" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000; padding: 10px; background-color: #28a745; color: white; border: none; border-radius: 5px;">
+  แจ้งเตือน Telegram
+</button>
+<button onclick="location.href='signup.html'">ไปหน้าถัดไป</button></body>
+</html>

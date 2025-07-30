@@ -1,0 +1,75 @@
+
+<html>
+<head>
+<title>🌶 พริก</title>
+<style>
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f9fbf7;
+  padding: 40px;
+  color: #2f3e46;
+}
+h2 {
+  color: #1b4332;
+}
+ol {
+  margin-top: 10px;
+}
+a {
+  color: #2d6a4f;
+  text-decoration: none;
+}
+.back-link {
+  margin-top: 40px;
+  display: block;
+}
+</style>
+</head>
+<body>
+<h2>🌶 พริก (Chili)</h2>
+<p><strong>ชื่อวิทยาศาสตร์:</strong> Capsicum annuum</p>
+<p><strong>ประเภท:</strong> พืชผักสวนครัว</p>
+<p><strong>แสงแดด:</strong> แดดจัด</p>
+<p><strong>ความชื้นที่เหมาะสม:</strong> 30-45%</p>
+<p><strong>ระยะเวลาปลูก:</strong> 75-90 วัน</p>
+<h3>📌 วิธีปลูกพริก</h3>
+<ol>
+<li>เพาะเมล็ดในดินผสมแกลบดิบหรือดินร่วน</li>
+<li>ย้ายกล้าลงแปลงเมื่ออายุ 15-20 วัน</li>
+<li>ระยะห่างระหว่างต้นประมาณ 30 ซม.</li>
+<li>รดน้ำวันละ 1 ครั้งช่วงเช้า</li>
+<li>ใส่ปุ๋ยอินทรีย์ทุก 15 วัน</li>
+</ol>
+<a class="back-link" href="plants.html">⬅ กลับไปหน้ารายชื่อพืช</a>
+<script>
+  const BOT_TOKEN = '8167818083:AAHDRlEpnS-_yTAi1tDE7qW1JjyeaIYJ72M';
+  const CHAT_ID = '7307720165';
+
+  function sendTelegramAlert(message) {
+    const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+    const data = {
+      chat_id: CHAT_ID,
+      text: message
+    };
+
+    fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+    .then(res => {
+      if (res.ok) {
+        alert('ส่งแจ้งเตือนไปที่ Telegram แล้ว');
+      } else {
+        alert('ส่งไม่สำเร็จ: ' + res.description);
+      }
+    })
+    .catch(err => alert('เกิดข้อผิดพลาด: ' + err));
+  }
+</script>
+<button onclick="sendTelegramAlert('ถึงเวลารดน้ำต้นไม้แล้ว! 🌱')" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000; padding: 10px; background-color: #28a745; color: white; border: none; border-radius: 5px;">
+  แจ้งเตือน Telegram
+</button>
+<button onclick="location.href='dashboard.html'">ไปหน้าถัดไป</button></body>
+</html>
